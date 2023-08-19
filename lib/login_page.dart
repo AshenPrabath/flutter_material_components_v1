@@ -1,14 +1,15 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_material_components_v1/widgets/my_text_field.dart';
+import 'package:flutter_material_components_v1/register_page.dart';
+import 'package:flutter_material_components_v1/widgets/input_textfield.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _LoginPageState extends State<LoginPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,23 +32,16 @@ class _HomePageState extends State<HomePage> {
                       ?.copyWith(color: Theme.of(context).colorScheme.primary),
                 ),
                 const SizedBox(height: 52),
-                MyTextField(
+                const InputTextField(
                   hint: "Email Address",
-                  onChanged: (text) => print(text),
+                  isPassword: false,
                 ),
-                const SizedBox(height: 22),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 15),
-                  child: SizedBox(
-                    height: 56,
-                    child: TextField(
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        border: OutlineInputBorder(),
-                        labelText: 'password',
-                      ),
-                    ),
-                  ),
+                const SizedBox(
+                  height: 22,
+                ),
+                const InputTextField(
+                  hint: 'Password',
+                  isPassword: true,
                 ),
                 const SizedBox(height: 22),
                 Padding(
@@ -55,7 +49,8 @@ class _HomePageState extends State<HomePage> {
                   child: SizedBox(
                     width: double.infinity,
                     height: 50,
-                    child: FilledButton(onPressed: () {}, child: Text("Login")),
+                    child: FilledButton(
+                        onPressed: () {}, child: const Text("Login")),
                   ),
                 ),
                 const SizedBox(height: 22),
@@ -66,10 +61,19 @@ class _HomePageState extends State<HomePage> {
                       "dont have an account?",
                       style: Theme.of(context).textTheme.bodyMedium,
                     ),
-                    Text(
-                      " Register",
-                      style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                          color: Theme.of(context).colorScheme.primary),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Register()),
+                        );
+                      },
+                      child: Text(
+                        " Register",
+                        style: Theme.of(context).textTheme.bodyMedium?.copyWith(
+                            color: Theme.of(context).colorScheme.primary),
+                      ),
                     ),
                   ],
                 )
