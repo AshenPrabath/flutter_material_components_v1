@@ -12,7 +12,7 @@ class InputTextField extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: SizedBox(
-        height: 56,
+        height: 60,
         child: TextField(
           obscureText: isPassword,
           decoration: InputDecoration(

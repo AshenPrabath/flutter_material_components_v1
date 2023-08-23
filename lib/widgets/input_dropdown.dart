@@ -8,15 +8,28 @@ class InputDropDown extends StatefulWidget {
 }
 
 class _InputDropDownState extends State<InputDropDown> {
-  String selectedOption = 'Option 1';
-  List<String> options = ['Option 1', 'Option 2', 'Option 3', 'Option 4'];
 
   @override
   Widget build(BuildContext context) {
-    return const Padding(
+    return  Padding(
       padding: EdgeInsets.symmetric(horizontal: 15),
       child: SizedBox(
-        height: 56,
+        height: 60,
+        child: DropdownButtonFormField<String>(
+          decoration: const InputDecoration(
+            labelText: 'select Faculty',
+            border: OutlineInputBorder(),
+          ),
+          items: ['Faculty of computing','Faculty of Business','Faculty of Science'].map((String value){
+            return DropdownMenuItem<String>(
+              value: value,
+              child: Text(value),
+            );
+            
+          }).toList(),
+          onChanged: (value) {},
+
+        ),
       ),
     );
   }
