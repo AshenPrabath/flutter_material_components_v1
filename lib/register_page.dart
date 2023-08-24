@@ -54,7 +54,14 @@ class _RegisterState extends State<Register> {
                 const SizedBox(
                   height: 15,
                 ),
-                const InputDropDown(),
+                const InputDropDown(
+                  itemsList: [
+                    "Faculty Of Business",
+                    "Faculty Of Computing",
+                    "Faculty Of Engineering"
+                  ],
+                  labelText: "Select Faculty",
+                ),
                 const SizedBox(
                   height: 15,
                 ),

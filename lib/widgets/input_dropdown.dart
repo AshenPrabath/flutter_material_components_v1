@@ -1,34 +1,29 @@
 import 'package:flutter/material.dart';
 
-class InputDropDown extends StatefulWidget {
-  const InputDropDown({super.key});
-
-  @override
-  State<InputDropDown> createState() => _InputDropDownState();
-}
-
-class _InputDropDownState extends State<InputDropDown> {
+class InputDropDown extends StatelessWidget {
+  final List<String> itemsList;
+  final String labelText;
+  const InputDropDown(
+      {super.key, required this.itemsList, required this.labelText});
 
   @override
   Widget build(BuildContext context) {
-    return  Padding(
-      padding: EdgeInsets.symmetric(horizontal: 15),
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 15),
       child: SizedBox(
         height: 60,
         child: DropdownButtonFormField<String>(
-          decoration: const InputDecoration(
-            labelText: 'select Faculty',
-            border: OutlineInputBorder(),
+          decoration: InputDecoration(
+            labelText: labelText,
+            border: const OutlineInputBorder(),
           ),
-          items: ['Faculty of computing','Faculty of Business','Faculty of Science'].map((String value){
+          items: itemsList.map((String value) {
             return DropdownMenuItem<String>(
               value: value,
               child: Text(value),
             );
-            
           }).toList(),
           onChanged: (value) {},
-
         ),
       ),
     );
