@@ -13,7 +13,13 @@ class InputTextField extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 15),
       child: SizedBox(
         height: 60,
-        child: TextField(
+        child: TextFormField(
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Please fill this field';
+            }
+            return null;
+          },
           obscureText: isPassword,
           decoration: InputDecoration(
             border: const OutlineInputBorder(),

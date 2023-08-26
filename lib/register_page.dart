@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_material_components_v1/login_page.dart';
 import 'package:flutter_material_components_v1/widgets/input_dropdown.dart';
 import 'package:flutter_material_components_v1/widgets/input_textfield.dart';
 
@@ -11,9 +10,11 @@ class Register extends StatefulWidget {
 }
 
 class _RegisterState extends State<Register> {
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _formKey,
       body: ListView(
         children: [
           Center(
@@ -85,7 +86,14 @@ class _RegisterState extends State<Register> {
                     width: double.infinity,
                     height: 50,
                     child: FilledButton(
-                        onPressed: () {}, child: const Text("Register")),
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text('Processing Data')),
+                            );
+                          }
+                        },
+                        child: const Text("Register")),
                   ),
                 ),
                 const SizedBox(
