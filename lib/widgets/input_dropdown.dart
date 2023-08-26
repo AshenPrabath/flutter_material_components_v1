@@ -10,9 +10,14 @@ class InputDropDown extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
-      child: SizedBox(
-        height: 60,
+      
         child: DropdownButtonFormField<String>(
+          validator: (value) {
+            if (value == null || value.isEmpty) {
+              return 'Please fill this field';
+            }
+            return null;
+          },
           decoration: InputDecoration(
             labelText: labelText,
             border: const OutlineInputBorder(),
@@ -25,7 +30,7 @@ class InputDropDown extends StatelessWidget {
                       }).toList(),
           onChanged: (value) {},
         ),
-      ),
+      
     );
   }
 }

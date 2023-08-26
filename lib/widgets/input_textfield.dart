@@ -11,8 +11,6 @@ class InputTextField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 15),
-      child: SizedBox(
-        height: 60,
         child: TextFormField(
           validator: (value) {
             if (value == null || value.isEmpty) {
@@ -26,7 +24,7 @@ class InputTextField extends StatelessWidget {
             labelText: hint,
           ),
         ),
-      ),
+      
     );
   }
 }
