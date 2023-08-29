@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_material_components_v1/events_page.dart';
-import 'package:flutter_material_components_v1/login_page.dart';
 
 void main() {
   runApp(const MyApp());
