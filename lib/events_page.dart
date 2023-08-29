@@ -6,8 +6,12 @@ class EventsPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: EventCard(),
+    return   Scaffold(
+      body: ListView(
+        children: [
+          EventCard()
+        ]
+      )
     );
   }
 }
