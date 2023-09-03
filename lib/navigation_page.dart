@@ -26,7 +26,7 @@ class _EventsPageState extends State<NavigationPage> {
     return showModalBottomSheet(
       context: context,
       builder: (context) => Container(
-        height: 176,
+        height: 146,
         width: 400,
         child: Center(
             child: Column(
