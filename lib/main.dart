@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_material_components_v1/events_page.dart';
+import 'package:flutter_material_components_v1/navigation_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
             seedColor: const Color.fromARGB(255, 0, 109, 64)),
         useMaterial3: true,
       ),
-      home: const EventsPage(),
+      home: const NavigationPage(),
     );
   }
 }
