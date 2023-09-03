@@ -5,7 +5,7 @@ class EventCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     return Center(
+    return Center(
       child: Card(
         elevation: 0,
         shape: RoundedRectangleBorder(
