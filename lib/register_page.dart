@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_material_components_v1/navigation_page.dart';
 import 'package:flutter_material_components_v1/widgets/input_dropdown.dart';
 import 'package:flutter_material_components_v1/widgets/input_textfield.dart';
 
@@ -77,6 +78,11 @@ class _RegisterState extends State<Register> {
                                     content: Text('Processing Data')),
                               );
                             }
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const NavigationPage()),
+                            );
                           },
                           child: const Text("Register")),
                     ),
