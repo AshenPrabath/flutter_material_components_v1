@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_material_components_v1/navigation_page.dart';
+import 'package:flutter_material_components_v1/widgets/custom_filled_button.dart';
 import 'package:flutter_material_components_v1/widgets/input_dropdown.dart';
 import 'package:flutter_material_components_v1/widgets/input_textfield.dart';
 
@@ -12,6 +13,13 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   final _formKey = GlobalKey<FormState>();
+  final TextEditingController _name = TextEditingController();
+  List<String> facultyList = [
+    "Faculty Of Business",
+    "Faculty Of Computing",
+    "Faculty Of Engineering"
+  ];
+  final String faculty = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -49,12 +57,8 @@ class _RegisterState extends State<Register> {
                     hint: "Phone",
                     isPassword: false,
                   ),
-                  const InputDropDown(
-                    itemsList: [
-                      "Faculty Of Business",
-                      "Faculty Of Computing",
-                      "Faculty Of Engineering"
-                    ],
+                  InputDropDown(
+                    itemsList: facultyList,
                     labelText: "Select Faculty",
                   ),
                   const InputTextField(
@@ -65,28 +69,20 @@ class _RegisterState extends State<Register> {
                     hint: "Confirm Password",
                     isPassword: true,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    child: SizedBox(
-                      width: double.infinity,
-                      height: 50,
-                      child: FilledButton(
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                    content: Text('Processing Data')),
-                              );
-                            }
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                  builder: (context) => const NavigationPage()),
-                            );
-                          },
-                          child: const Text("Register")),
-                    ),
-                  ),
+                  CustomFilledButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Processing Data')),
+                          );
+                        }
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const NavigationPage()),
+                        );
+                      },
+                      buttonText: "Register"),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
