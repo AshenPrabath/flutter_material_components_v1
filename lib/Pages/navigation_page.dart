@@ -1,9 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_material_components_v1/bookings_page.dart';
-import 'package:flutter_material_components_v1/events_page.dart';
-import 'package:flutter_material_components_v1/profile_page.dart';
-import 'package:flutter_material_components_v1/search_page.dart';
-import 'package:flutter_material_components_v1/widgets/event_card.dart';
+import 'package:flutter_material_components_v1/Pages/bookings_page.dart';
+import 'package:flutter_material_components_v1/Pages/events_page.dart';
+import 'package:flutter_material_components_v1/Pages/profile_page.dart';
+import 'package:flutter_material_components_v1/Pages/search_page.dart';
 
 class NavigationPage extends StatefulWidget {
   const NavigationPage({super.key});
@@ -15,17 +14,17 @@ class NavigationPage extends StatefulWidget {
 class _EventsPageState extends State<NavigationPage> {
   int currentPageIndex = 0;
   final screens = [
-    EventsPage(),
-    SearchPage(),
-    SizedBox.shrink(),
-    BookingsPage(),
-    ProfilePage(),
+    const EventsPage(),
+    const SearchPage(),
+    const SizedBox.shrink(),
+    const BookingsPage(),
+    const ProfilePage(),
   ];
 
   Future _showAddBottomSheet(BuildContext context) {
     return showModalBottomSheet(
       context: context,
-      builder: (context) => Container(
+      builder: (context) => SizedBox(
         height: 146,
         width: 400,
         child: Center(

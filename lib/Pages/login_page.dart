@@ -1,25 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_material_components_v1/navigation_page.dart';
+import 'package:flutter_material_components_v1/Pages/register_page.dart';
 import 'package:flutter_material_components_v1/widgets/custom_filled_button.dart';
-import 'package:flutter_material_components_v1/widgets/input_dropdown.dart';
 import 'package:flutter_material_components_v1/widgets/input_textfield.dart';
 
-class Register extends StatefulWidget {
-  const Register({super.key});
+class LoginPage extends StatefulWidget {
+  const LoginPage({super.key});
 
   @override
-  State<Register> createState() => _RegisterState();
+  State<LoginPage> createState() => _LoginPageState();
 }
 
-class _RegisterState extends State<Register> {
+class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
-  final TextEditingController _name = TextEditingController();
-  List<String> facultyList = [
-    "Faculty Of Business",
-    "Faculty Of Computing",
-    "Faculty Of Engineering"
-  ];
-  final String faculty = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,17 +20,14 @@ class _RegisterState extends State<Register> {
         key: _formKey,
         child: ListView(
           children: [
-            const SizedBox(
-              height: 40,
-            ),
             Center(
               child: OverflowBar(
-                overflowAlignment: OverflowBarAlignment.start,
                 overflowSpacing: 15,
                 children: <Widget>[
+                  const SizedBox(height: 150),
                   Center(
                     child: Text(
-                      'Register',
+                      'Login',
                       style: Theme.of(context)
                           .textTheme
                           .displayMedium
@@ -46,27 +36,11 @@ class _RegisterState extends State<Register> {
                     ),
                   ),
                   const InputTextField(
-                    hint: "Name",
+                    hint: "Email Address",
                     isPassword: false,
                   ),
                   const InputTextField(
-                    hint: "Email",
-                    isPassword: false,
-                  ),
-                  const InputTextField(
-                    hint: "Phone",
-                    isPassword: false,
-                  ),
-                  InputDropDown(
-                    itemsList: facultyList,
-                    labelText: "Select Faculty",
-                  ),
-                  const InputTextField(
-                    hint: "Password",
-                    isPassword: true,
-                  ),
-                  const InputTextField(
-                    hint: "Confirm Password",
+                    hint: 'Password',
                     isPassword: true,
                   ),
                   CustomFilledButton(
@@ -76,26 +50,25 @@ class _RegisterState extends State<Register> {
                             const SnackBar(content: Text('Processing Data')),
                           );
                         }
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const NavigationPage()),
-                        );
                       },
-                      buttonText: "Register"),
+                      buttonText: "Login"),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        "Already have an account??",
+                        "dont have an account?",
                         style: Theme.of(context).textTheme.bodyMedium,
                       ),
                       GestureDetector(
                         onTap: () {
-                          Navigator.pop(context);
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Register()),
+                          );
                         },
                         child: Text(
-                          " Log in",
+                          " Register",
                           style: Theme.of(context)
                               .textTheme
                               .bodyMedium
@@ -104,10 +77,7 @@ class _RegisterState extends State<Register> {
                         ),
                       ),
                     ],
-                  ),
-                  const SizedBox(
-                    height: 40,
-                  ),
+                  )
                 ],
               ),
             ),
