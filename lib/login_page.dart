@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_material_components_v1/register_page.dart';
+import 'package:flutter_material_components_v1/widgets/custom_filled_button.dart';
 import 'package:flutter_material_components_v1/widgets/input_textfield.dart';
 
 class LoginPage extends StatefulWidget {
@@ -30,7 +31,8 @@ class _LoginPageState extends State<LoginPage> {
                       style: Theme.of(context)
                           .textTheme
                           .displayMedium
-                          ?.copyWith(color: Theme.of(context).colorScheme.primary),
+                          ?.copyWith(
+                              color: Theme.of(context).colorScheme.primary),
                     ),
                   ),
                   const InputTextField(
@@ -41,22 +43,15 @@ class _LoginPageState extends State<LoginPage> {
                     hint: 'Password',
                     isPassword: true,
                   ),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 15),
-                    child: SizedBox(
-                      width: double.infinity,
-                      height: 50,
-                      child: FilledButton(
-                          onPressed: () {
-                            if (_formKey.currentState!.validate()) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                const SnackBar(
-                                    content: Text('Processing Data')),
-                              );
-                            }
-                          }, child: const Text("Login")),
-                    ),
-                  ),
+                  CustomFilledButton(
+                      onPressed: () {
+                        if (_formKey.currentState!.validate()) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(content: Text('Processing Data')),
+                          );
+                        }
+                      },
+                      buttonText: "Login"),
                   Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -74,8 +69,11 @@ class _LoginPageState extends State<LoginPage> {
                         },
                         child: Text(
                           " Register",
-                          style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              color: Theme.of(context).colorScheme.primary),
+                          style: Theme.of(context)
+                              .textTheme
+                              .bodyMedium
+                              ?.copyWith(
+                                  color: Theme.of(context).colorScheme.primary),
                         ),
                       ),
                     ],
