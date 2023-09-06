@@ -12,18 +12,22 @@ class EventsPage extends StatelessWidget {
           backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
           title: Text(
             "Events",
-            style: Theme.of(context).textTheme.titleLarge?.copyWith(
-                color: Theme.of(context).colorScheme.onSurfaceVariant),
+            style: Theme.of(context)
+                .textTheme
+                .titleLarge
+                ?.copyWith(color: Theme.of(context).colorScheme.onSurface),
           ),
         ),
-        body: ListView(
-          children: const [
-            EventCard(),
-            EventCard(),
-            EventCard(),
-            EventCard(),
-
-          ],
+        body: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 15),
+          child: ListView(
+            children: const [
+              EventCard(),
+              EventCard(),
+              EventCard(),
+              EventCard(),
+            ],
+          ),
         ));
   }
 }

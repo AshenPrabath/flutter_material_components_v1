@@ -21,64 +21,75 @@ class _LoginPageState extends State<LoginPage> {
         child: ListView(
           children: [
             Center(
-              child: OverflowBar(
-                overflowSpacing: 15,
-                children: <Widget>[
-                  const SizedBox(height: 150),
-                  Center(
-                    child: Text(
-                      'Login',
-                      style: Theme.of(context)
-                          .textTheme
-                          .displayMedium
-                          ?.copyWith(
-                              color: Theme.of(context).colorScheme.primary),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 15),
+                child: OverflowBar(
+                  overflowSpacing: 15,
+                  children: <Widget>[
+                    const SizedBox(height: 120),
+                    Center(
+                      child: Image.asset(
+                          'lib/assets/logo-no-background 1 (1).png'),
                     ),
-                  ),
-                  const InputTextField(
-                    hint: "Email Address",
-                    isPassword: false,
-                  ),
-                  const InputTextField(
-                    hint: 'Password',
-                    isPassword: true,
-                  ),
-                  CustomFilledButton(
-                      onPressed: () {
-                        if (_formKey.currentState!.validate()) {
-                          ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(content: Text('Processing Data')),
-                          );
-                        }
-                      },
-                      buttonText: "Login"),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "dont have an account?",
-                        style: Theme.of(context).textTheme.bodyMedium,
+                    const SizedBox(height: 50),
+                    Center(
+                      child: Text(
+                        'Login',
+                        style: Theme.of(context)
+                            .textTheme
+                            .displayMedium
+                            ?.copyWith(
+                                color: Theme.of(context).colorScheme.primary),
                       ),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const Register()),
-                          );
+                    ),
+                    InputTextField(
+                      onChanged: (name) {},
+                      hint: "Email Address",
+                      isPassword: false,
+                    ),
+                    InputTextField(
+                      onChanged: (name) {},
+                      hint: 'Password',
+                      isPassword: true,
+                    ),
+                    CustomFilledButton(
+                        onPressed: () {
+                          if (_formKey.currentState!.validate()) {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(content: Text('Processing Data')),
+                            );
+                          }
                         },
-                        child: Text(
-                          " Register",
-                          style: Theme.of(context)
-                              .textTheme
-                              .bodyMedium
-                              ?.copyWith(
-                                  color: Theme.of(context).colorScheme.primary),
+                        buttonText: "Login"),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          "Don't have an account?",
+                          style: Theme.of(context).textTheme.bodyLarge,
                         ),
-                      ),
-                    ],
-                  )
-                ],
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                  builder: (context) => const Register()),
+                            );
+                          },
+                          child: Text(
+                            " Register",
+                            style: Theme.of(context)
+                                .textTheme
+                                .titleMedium
+                                ?.copyWith(
+                                    color:
+                                        Theme.of(context).colorScheme.primary),
+                          ),
+                        ),
+                      ],
+                    )
+                  ],
+                ),
               ),
             ),
           ],
