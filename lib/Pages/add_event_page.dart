@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_material_components_v1/widgets/custom_filled_button.dart';
 import 'package:flutter_material_components_v1/widgets/date_picker_textfield.dart';
+import 'package:flutter_material_components_v1/widgets/input_large_textfield.dart';
 import 'package:flutter_material_components_v1/widgets/input_textfield.dart';
 import 'package:flutter_material_components_v1/widgets/time_picker_textfield.dart';
 
@@ -15,7 +16,8 @@ class _AddEventPageState extends State<AddEventPage> {
   TimeOfDay? time;
   String? eventTitle;
   DateTime? date;
-  String buttonText = "Submit";
+  String buttonText = "Publish as a free event";
+  final TextEditingController _descText = TextEditingController();
   Future<String> saveToDatabase() async {
     await Future.delayed(Duration(seconds: 3));
     return "succeed";
@@ -42,11 +44,12 @@ class _AddEventPageState extends State<AddEventPage> {
               child: Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 15),
                 child: OverflowBar(
-                  overflowSpacing: 20,
+                  overflowSpacing: 15,
                   children: [
                     const SizedBox(),
                     InputTextField(
-                      hint: "Event Title",
+                      labelText: "Event Title",
+                      hint: "Give a title to the event",
                       isPassword: false,
                       onChanged: (text) {
                         eventTitle = text;
@@ -70,25 +73,60 @@ class _AddEventPageState extends State<AddEventPage> {
                         )
                       ],
                     ),
-                    ElevatedButton(
-                      onPressed: () async {
-                        final value = await showTimePicker(
-                            context: context, initialTime: TimeOfDay.now());
-                        setState(() {
-                          time = value;
-                        });
-                      },
-                      child:
-                          Text(time != null ? time.toString() : "Select Time"),
+                    InputTextField(
+                      labelText: "Venue",
+                      hint: "Enter the location ",
+                      suffixIcon: Icons.location_on_outlined,
+                      onChanged: (value) {},
                     ),
-                    CustomFilledButton(
-                        onPressed: () async {
-                          final res = await saveToDatabase();
-                          setState(() {
-                            buttonText = res;
-                          });
-                        },
-                        buttonText: buttonText)
+                    InputLargeTextField(
+                      controller: _descText,
+                      maxLength: 250,
+                    ),
+                    InputTextField(
+                      labelText: "External Link",
+                      hint: "Paste if you have any external Links.",
+                      helperText: "*Optional",
+                      suffixIcon: Icons.link,
+                      onChanged: (value) {},
+                    ),
+                    OverflowBar(
+                      overflowSpacing: 7,
+                      children: [
+                        CustomFilledButton(
+                            onPressed: () async {
+                              final res = await saveToDatabase();
+                              setState(() {
+                                buttonText = res;
+                              });
+                            },
+                            buttonText: buttonText),
+                        Center(
+                          child: Text(
+                            "or",
+                            style: Theme.of(context)
+                                .textTheme
+                                .bodyLarge
+                                ?.copyWith(
+                                    color: Theme.of(context)
+                                        .colorScheme
+                                        .onBackground),
+                          ),
+                        ),
+                        CustomFilledButton(
+                          onPressed: () {},
+                          buttonText: "Add Tickets",
+                          buttonColor:
+                              Theme.of(context).colorScheme.secondaryContainer,
+                          buttonTextColor: Theme.of(context)
+                              .colorScheme
+                              .onSecondaryContainer,
+                        ),
+                        const SizedBox(
+                          height: 50,
+                        )
+                      ],
+                    ),
                   ],
                 ),
               ),
@@ -97,5 +135,11 @@ class _AddEventPageState extends State<AddEventPage> {
         ),
       ),
     );
+  }
+
+  @override
+  void dispose() {
+    _descText.dispose();
+    super.dispose();
   }
 }
