@@ -43,13 +43,15 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     InputTextField(
+                      labelText: "Email Address",
+                      hint: "Enter your Email Address",
                       onChanged: (name) {},
-                      hint: "Email Address",
                       isPassword: false,
                     ),
                     InputTextField(
+                      labelText: "Password",
+                      hint: "Enter your Password",
                       onChanged: (name) {},
-                      hint: 'Password',
                       isPassword: true,
                     ),
                     CustomFilledButton(

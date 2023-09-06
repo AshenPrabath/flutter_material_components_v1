@@ -49,18 +49,22 @@ class _RegisterState extends State<Register> {
                       ),
                     ),
                     InputTextField(
+                      labelText: "Name",
+                      hint: "Enter your Name",
                       onChanged: (name) {},
-                      hint: "Name",
                       isPassword: false,
                     ),
                     InputTextField(
+                      labelText: "Email Address",
+                      hint: "Enter your Email Address ",
                       onChanged: (name) {},
-                      hint: "Email",
                       isPassword: false,
                     ),
                     InputTextField(
+                      labelText: "Phone",
+                      hint: "Enter your Name",
+                      textInputType: TextInputType.phone,
                       onChanged: (name) {},
-                      hint: "Phone",
                       isPassword: false,
                     ),
                     InputDropDown(
@@ -69,13 +73,15 @@ class _RegisterState extends State<Register> {
                       labelText: "Select Faculty",
                     ),
                     InputTextField(
+                      labelText: "Password",
+                      hint: "Set a new password",
                       onChanged: (name) {},
-                      hint: "Password",
                       isPassword: true,
                     ),
                     InputTextField(
+                      labelText: "Confirm Password",
+                      hint: "re type password",
                       onChanged: (name) {},
-                      hint: "Confirm Password",
                       isPassword: true,
                     ),
                     CustomFilledButton(
