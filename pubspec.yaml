@@ -65,6 +65,10 @@ flutter:
      - lib/assets/logo-no-background 1 (1).png
      - lib/assets/Group 9.png
      - lib/assets/media (2).png
+     - lib/assets/media (4).png
+     - lib/assets/media (5).png
+     - lib/assets/Barcode-PNG-Photo 1.png
+
 
   #  - images/a_dot_ham.jpeg
 
