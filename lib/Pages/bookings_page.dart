@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_material_components_v1/widgets/ticket_minicard.dart';
 
 class BookingsPage extends StatelessWidget {
   const BookingsPage({super.key});
@@ -15,6 +16,28 @@ class BookingsPage extends StatelessWidget {
               .textTheme
               .titleLarge
               ?.copyWith(color: Theme.of(context).colorScheme.onSurface),
+        ),
+      ),
+      body: Padding(
+        padding: const EdgeInsets.symmetric(horizontal: 15.0),
+        child: ListView(
+          children: const [
+            OverflowBar(
+              overflowSpacing: 13,
+              children: [
+                SizedBox(height: 20),
+                TicketMiniCard(),
+                TicketMiniCard(),
+                TicketMiniCard(),
+                TicketMiniCard(),
+                TicketMiniCard(),
+                TicketMiniCard(),
+                TicketMiniCard(),
+                TicketMiniCard(),
+                TicketMiniCard(),
+              ],
+            ),
+          ],
         ),
       ),
     );
