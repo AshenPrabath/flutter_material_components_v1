@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_material_components_v1/Pages/add_event_page.dart';
 import 'package:flutter_material_components_v1/Pages/bookings_page.dart';
 import 'package:flutter_material_components_v1/Pages/events_page.dart';
 import 'package:flutter_material_components_v1/Pages/profile_page.dart';
@@ -69,7 +70,12 @@ class _EventsPageState extends State<NavigationPage> {
               ),
             ),
             TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(builder: (context) => const AddEventPage()),
+                );
+              },
               style: TextButton.styleFrom(
                   foregroundColor: Theme.of(context).colorScheme.onBackground,
                   textStyle: Theme.of(context).textTheme.titleMedium),
