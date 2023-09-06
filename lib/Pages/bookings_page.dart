@@ -26,15 +26,14 @@ class BookingsPage extends StatelessWidget {
               overflowSpacing: 13,
               children: [
                 SizedBox(height: 20),
-                TicketMiniCard(),
-                TicketMiniCard(),
-                TicketMiniCard(),
-                TicketMiniCard(),
-                TicketMiniCard(),
-                TicketMiniCard(),
-                TicketMiniCard(),
-                TicketMiniCard(),
-                TicketMiniCard(),
+                TicketMiniCard(
+                    imageLocation: 'lib/assets/media (2).png',
+                    eventTitle: "Green Fiesta 2023",
+                    ticketType: "VIP"),
+                TicketMiniCard(
+                    imageLocation: 'lib/assets/media (4).png',
+                    eventTitle: "Prana 2023",
+                    ticketType: "Normal"),
               ],
             ),
           ],
