@@ -14,7 +14,7 @@ class ProfilePage extends StatelessWidget {
           style: Theme.of(context)
               .textTheme
               .titleLarge
-              ?.copyWith(color: Theme.of(context).colorScheme.onSurfaceVariant),
+              ?.copyWith(color: Theme.of(context).colorScheme.onSurface),
         ),
       ),
     );
