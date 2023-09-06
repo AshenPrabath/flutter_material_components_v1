@@ -17,7 +17,11 @@ class EventCard extends StatelessWidget {
         child: Column(
           children: [
             ListTile(
-              leading: Image.asset('lib/assets/background.png'),
+              leading: Image.asset(
+                'lib/assets/background.png',
+                width: 40,
+                height: 40,
+              ),
               title: Text(
                 'Foss Community',
                 style: Theme.of(context)
@@ -41,7 +45,11 @@ class EventCard extends StatelessWidget {
             ),
             Padding(
               padding: const EdgeInsets.only(bottom: 16),
-              child: Image.asset('lib/assets/media.png'),
+              child: Image.asset(
+                'lib/assets/media.png',
+                height: 152,
+                width: 356,
+              ),
             ),
             Padding(
               padding: EdgeInsets.symmetric(horizontal: 16),
