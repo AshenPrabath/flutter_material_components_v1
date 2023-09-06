@@ -1,17 +1,23 @@
 import 'package:flutter/material.dart';
 
 class InputTextField extends StatelessWidget {
-  final String hint;
+  final String? hint;
+  final String labelText;
   final bool? isPassword;
   final IconData? suffixIcon;
   final double? width;
+  final String? helperText;
+  final TextInputType? textInputType;
   final Function(String) onChanged;
   const InputTextField({
     Key? key,
-    required this.hint,
+    this.hint,
+    required this.labelText,
     this.isPassword,
     this.suffixIcon,
     this.width,
+    this.helperText,
+    this.textInputType,
     required this.onChanged,
   }) : super(key: key);
 
@@ -20,6 +26,7 @@ class InputTextField extends StatelessWidget {
     return SizedBox(
       width: width,
       child: TextFormField(
+        keyboardType: textInputType,
         onChanged: onChanged,
         validator: (value) {
           if (value == null || value.isEmpty) {
@@ -29,10 +36,11 @@ class InputTextField extends StatelessWidget {
         },
         obscureText: isPassword ?? false,
         decoration: InputDecoration(
-          suffixIcon: Icon(suffixIcon),
-          border: const OutlineInputBorder(),
-          labelText: hint,
-        ),
+            suffixIcon: Icon(suffixIcon),
+            border: const OutlineInputBorder(),
+            labelText: labelText,
+            hintText: hint,
+            helperText: helperText),
       ),
     );
   }
