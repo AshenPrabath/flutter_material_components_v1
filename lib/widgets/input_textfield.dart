@@ -2,29 +2,34 @@ import 'package:flutter/material.dart';
 
 class InputTextField extends StatelessWidget {
   final String hint;
-  final bool isPassword;
-  final TextEditingController? controller;
-
-  const InputTextField(
-      {super.key,
-      required this.hint,
-      this.isPassword = false,
-      this.controller});
+  final bool? isPassword;
+  final IconData? suffixIcon;
+  final double? width;
+  final Function(String) onChanged;
+  const InputTextField({
+    Key? key,
+    required this.hint,
+    this.isPassword,
+    this.suffixIcon,
+    this.width,
+    required this.onChanged,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 15),
+    return SizedBox(
+      width: width,
       child: TextFormField(
-        controller: controller,
+        onChanged: onChanged,
         validator: (value) {
           if (value == null || value.isEmpty) {
             return 'Please fill this field';
           }
           return null;
         },
-        obscureText: isPassword,
+        obscureText: isPassword ?? false,
         decoration: InputDecoration(
+          suffixIcon: Icon(suffixIcon),
           border: const OutlineInputBorder(),
           labelText: hint,
         ),
