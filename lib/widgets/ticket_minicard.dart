@@ -1,15 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_material_components_v1/Models/event.dart';
+
 import 'package:flutter_material_components_v1/Pages/ticket_page.dart';
 
 class TicketMiniCard extends StatelessWidget {
-  final String imageLocation;
-  final String eventTitle;
-  final String ticketType;
+  final Event event;
   const TicketMiniCard({
     Key? key,
-    required this.imageLocation,
-    required this.eventTitle,
-    required this.ticketType,
+    required this.event,
   }) : super(key: key);
 
   @override
@@ -17,9 +15,10 @@ class TicketMiniCard extends StatelessWidget {
     const double borderRadius = 12.0;
     return GestureDetector(
       onTap: () {
-        Navigator.push(
-          context,
-          MaterialPageRoute(builder: (context) => const TicketPage()),
+        Navigator.of(context).push(
+          MaterialPageRoute(
+            builder: (context) => TicketPage(event: event),
+          ),
         );
       },
       child: Container(
@@ -44,7 +43,7 @@ class TicketMiniCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        eventTitle,
+                        event.eventTitle,
                         style: Theme.of(context)
                             .textTheme
                             .titleMedium
@@ -52,7 +51,7 @@ class TicketMiniCard extends StatelessWidget {
                                 color: Theme.of(context).colorScheme.onSurface),
                       ),
                       Text(
-                        ticketType,
+                        event.ticketType,
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             color: Theme.of(context).colorScheme.onSurface),
                       ),
@@ -67,7 +66,7 @@ class TicketMiniCard extends StatelessWidget {
                     topRight: Radius.circular(borderRadius),
                     bottomRight: Radius.circular(borderRadius)),
                 child: Image.asset(
-                  imageLocation,
+                  event.eventImage,
                   height: 80,
                   width: 80,
                 )),

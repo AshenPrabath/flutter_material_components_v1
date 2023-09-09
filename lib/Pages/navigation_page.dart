@@ -4,6 +4,7 @@ import 'package:flutter_material_components_v1/Pages/bookings_page.dart';
 import 'package:flutter_material_components_v1/Pages/events_page.dart';
 import 'package:flutter_material_components_v1/Pages/profile_page.dart';
 import 'package:flutter_material_components_v1/Pages/search_page.dart';
+import 'package:flutter_material_components_v1/Source/event_data.dart';
 
 class NavigationPage extends StatefulWidget {
   const NavigationPage({super.key});
@@ -13,12 +14,12 @@ class NavigationPage extends StatefulWidget {
 }
 
 class _EventsPageState extends State<NavigationPage> {
-  int currentPageIndex = 0;
+  int currentPageIndex = 3;
   final screens = [
     const EventsPage(),
     const SearchPage(),
     const SizedBox.shrink(),
-    const BookingsPage(),
+    BookingsPage(events: dummyEvents),
     const ProfilePage(),
   ];
 

@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_material_components_v1/widgets/ticket_minicard.dart';
+import 'package:flutter_material_components_v1/Models/event.dart';
 
 class BookingsPage extends StatelessWidget {
-  const BookingsPage({super.key});
+  final List<Event> events;
+  const BookingsPage({super.key, required this.events});
 
   @override
   Widget build(BuildContext context) {
@@ -20,23 +22,14 @@ class BookingsPage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15.0),
-        child: ListView(
-          children: const [
-            OverflowBar(
-              overflowSpacing: 13,
-              children: [
-                SizedBox(height: 20),
-                TicketMiniCard(
-                    imageLocation: 'lib/assets/media (2).png',
-                    eventTitle: "Green Fiesta 2023",
-                    ticketType: "VIP"),
-                TicketMiniCard(
-                    imageLocation: 'lib/assets/media (4).png',
-                    eventTitle: "Prana 2023",
-                    ticketType: "Normal"),
-              ],
-            ),
-          ],
+        child: ListView.builder(
+          itemCount: events.length,
+          itemBuilder: (context, index) {
+            return Padding(
+              padding: const EdgeInsets.only(top: 13),
+              child: TicketMiniCard(event: events[index]),
+            );
+          },
         ),
       ),
     );

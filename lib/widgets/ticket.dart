@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_material_components_v1/Models/event.dart';
+
 import 'package:flutter_material_components_v1/widgets/custom_filled_button.dart';
 
 class TicketWidget extends StatelessWidget {
-  const TicketWidget({super.key});
+  final Event event;
+  const TicketWidget({
+    Key? key,
+    required this.event,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +33,7 @@ class TicketWidget extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(borderRadius),
                   child: Image.asset(
-                    'lib/assets/media (5).png',
+                    event.eventImage,
                     height: 102,
                     width: 102,
                   ),
@@ -40,7 +46,7 @@ class TicketWidget extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 11),
                         child: Text(
-                          "Green Fiesta 2023",
+                          event.eventTitle,
                           style: Theme.of(context)
                               .textTheme
                               .headlineSmall
@@ -63,7 +69,7 @@ class TicketWidget extends StatelessWidget {
                           padding: const EdgeInsets.symmetric(
                               horizontal: 16.0, vertical: 6),
                           child: Text(
-                            "VIP",
+                            event.ticketType,
                             style: Theme.of(context)
                                 .textTheme
                                 .labelLarge
@@ -106,7 +112,7 @@ class TicketWidget extends StatelessWidget {
                       Padding(
                           padding: EdgeInsets.only(bottom: 21),
                           child: Text(
-                            "20-08-2023",
+                            event.eventDate.toLocal().toString().split(' ')[0],
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium
@@ -123,7 +129,7 @@ class TicketWidget extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.only(bottom: 21),
                         child: Text(
-                          "Dilshan Perera",
+                          event.ownerName,
                           style: Theme.of(context)
                               .textTheme
                               .bodyMedium
@@ -138,7 +144,7 @@ class TicketWidget extends StatelessWidget {
                             color: Theme.of(context).colorScheme.onSurface),
                       ),
                       Text(
-                        "3000 LKR",
+                        "${event.ticketPrice} LKR",
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             color: Theme.of(context).colorScheme.onSurface),
                       ),
@@ -153,9 +159,9 @@ class TicketWidget extends StatelessWidget {
                             color: Theme.of(context).colorScheme.onSurface),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(bottom: 21),
+                        padding: const EdgeInsets.only(bottom: 21),
                         child: Text(
-                          "6.00 pm",
+                          event.eventTime.format(context),
                           style: Theme.of(context)
                               .textTheme
                               .bodyMedium
@@ -170,9 +176,9 @@ class TicketWidget extends StatelessWidget {
                             color: Theme.of(context).colorScheme.onSurface),
                       ),
                       Padding(
-                        padding: EdgeInsets.only(bottom: 21),
+                        padding: const EdgeInsets.only(bottom: 21),
                         child: Text(
-                          "NSBM Sports Ground",
+                          event.eventVenue,
                           style: Theme.of(context)
                               .textTheme
                               .bodyMedium
@@ -187,7 +193,7 @@ class TicketWidget extends StatelessWidget {
                             color: Theme.of(context).colorScheme.onSurface),
                       ),
                       Text(
-                        "3",
+                        event.ticketCount.toString(),
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             color: Theme.of(context).colorScheme.onSurface),
                       ),
@@ -208,7 +214,7 @@ class TicketWidget extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 13),
                   child: Center(
                       child: Text(
-                    "Total Price 9000 LKR",
+                    "Total Price ${event.ticketPrice * event.ticketCount} LKR",
                     style: Theme.of(context).textTheme.labelLarge?.copyWith(
                         color:
                             Theme.of(context).colorScheme.onSecondaryContainer),

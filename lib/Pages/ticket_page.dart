@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_material_components_v1/Models/event.dart';
+
 import 'package:flutter_material_components_v1/widgets/ticket.dart';
 
 class TicketPage extends StatelessWidget {
-  const TicketPage({super.key});
+  final Event event;
+  const TicketPage({
+    Key? key,
+    required this.event,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -17,11 +23,9 @@ class TicketPage extends StatelessWidget {
               ?.copyWith(color: Theme.of(context).colorScheme.onSurface),
         ),
       ),
-      body: Container(
-        child: Padding(
-          padding: const EdgeInsets.all(23.0),
-          child: TicketWidget(),
-        ),
+      body: Padding(
+        padding: const EdgeInsets.all(23.0),
+        child: TicketWidget(event: event),
       ),
     );
   }
