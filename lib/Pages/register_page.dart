@@ -57,14 +57,15 @@ class _RegisterState extends State<Register> {
                     InputTextField(
                       labelText: "Email Address",
                       hint: "Enter your Email Address ",
-                      onChanged: (name) {},
+                      textInputType: TextInputType.emailAddress,
+                      onChanged: (email) {},
                       isPassword: false,
                     ),
                     InputTextField(
                       labelText: "Phone",
                       hint: "Enter your Name",
                       textInputType: TextInputType.phone,
-                      onChanged: (name) {},
+                      onChanged: (phone) {},
                       isPassword: false,
                     ),
                     InputDropDown(

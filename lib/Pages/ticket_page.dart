@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_material_components_v1/Models/event.dart';
+import 'package:flutter_material_components_v1/Models/event_model.dart';
 
 import 'package:flutter_material_components_v1/widgets/ticket.dart';
 

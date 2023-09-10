@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_material_components_v1/Models/event_model.dart';
+
+import 'package:flutter_material_components_v1/Pages/add_tickets.dart';
+import 'package:flutter_material_components_v1/Source/event_data.dart';
 import 'package:flutter_material_components_v1/widgets/custom_filled_button.dart';
 import 'package:flutter_material_components_v1/widgets/date_picker_textfield.dart';
 import 'package:flutter_material_components_v1/widgets/input_large_textfield.dart';
@@ -6,7 +10,11 @@ import 'package:flutter_material_components_v1/widgets/input_textfield.dart';
 import 'package:flutter_material_components_v1/widgets/time_picker_textfield.dart';
 
 class AddEventPage extends StatefulWidget {
-  const AddEventPage({super.key});
+  final Event events;
+  const AddEventPage({
+    Key? key,
+    required this.events,
+  }) : super(key: key);
 
   @override
   State<AddEventPage> createState() => _AddEventPageState();
@@ -114,7 +122,16 @@ class _AddEventPageState extends State<AddEventPage> {
                           ),
                         ),
                         CustomFilledButton(
-                          onPressed: () {},
+                          onPressed: () {
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => AddTicket(
+                                  event: widget.events,
+                                ),
+                              ),
+                            );
+                          },
                           buttonText: "Add Tickets",
                           buttonColor:
                               Theme.of(context).colorScheme.secondaryContainer,

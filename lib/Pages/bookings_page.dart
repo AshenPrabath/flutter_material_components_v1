@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_material_components_v1/widgets/ticket_minicard.dart';
-import 'package:flutter_material_components_v1/Models/event.dart';
+import 'package:flutter_material_components_v1/Models/event_model.dart';
 
 class BookingsPage extends StatelessWidget {
   final List<Event> events;
