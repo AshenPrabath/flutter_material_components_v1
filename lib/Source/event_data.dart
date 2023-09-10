@@ -1,6 +1,5 @@
 // event_data.dart
 
-import 'package:flutter/material.dart';
 import 'package:flutter_material_components_v1/Models/event_model.dart';
 
 List<Event> dummyEvents = [
