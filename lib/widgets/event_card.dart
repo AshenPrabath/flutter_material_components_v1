@@ -1,7 +1,13 @@
 import 'package:flutter/material.dart';
 
+import 'package:flutter_material_components_v1/Models/event_model.dart';
+
 class EventCard extends StatelessWidget {
-  const EventCard({super.key});
+  final Event event;
+  const EventCard({
+    Key? key,
+    required this.event,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -23,7 +29,7 @@ class EventCard extends StatelessWidget {
                 height: 40,
               ),
               title: Text(
-                'Foss Community',
+                event.title,
                 style: Theme.of(context)
                     .textTheme
                     .titleMedium
@@ -32,12 +38,12 @@ class EventCard extends StatelessWidget {
               subtitle: Row(
                 children: [
                   Text(
-                    'Sahan Perera |',
+                    '${event.userId} |',
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: Theme.of(context).colorScheme.onSurfaceVariant),
                   ),
                   Text(
-                    ' 1 day ago',
+                    ' ${event.time}',
                     style: TextStyle(color: Colors.black.withOpacity(0.6)),
                   ),
                 ],
@@ -56,7 +62,7 @@ class EventCard extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text("Techie Slueths",
+                  Text(event.title,
                       style: Theme.of(context).textTheme.headlineMedium),
                 ],
               ),
@@ -94,9 +100,7 @@ class EventCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.all(16.0),
               child: Text(
-                '''It's time to embark on a legendary journey.🕵️
-
-Hey Detectives,today is the day!! Take out your magnifying glass ,Pick up the puzzle and solve the mystery.''',
+                event.desc,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: Theme.of(context).colorScheme.onSurfaceVariant),
               ),
