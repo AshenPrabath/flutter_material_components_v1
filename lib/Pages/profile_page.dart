@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_material_components_v1/widgets/profile_data.dart';
 
 class ProfilePage extends StatelessWidget {
   const ProfilePage({super.key});
@@ -16,6 +17,10 @@ class ProfilePage extends StatelessWidget {
               .titleLarge
               ?.copyWith(color: Theme.of(context).colorScheme.onSurface),
         ),
+      ),
+      body: const Padding(
+        padding: EdgeInsets.symmetric(vertical: 40, horizontal: 23),
+        child: ProfileData(),
       ),
     );
   }
