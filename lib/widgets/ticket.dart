@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_material_components_v1/Models/event.dart';
+import 'package:flutter_material_components_v1/Models/event_model.dart';
 
 import 'package:flutter_material_components_v1/widgets/custom_filled_button.dart';
 
@@ -18,10 +18,8 @@ class TicketWidget extends StatelessWidget {
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(borderRadius),
         border: Border.all(
-          color: Theme.of(context)
-              .colorScheme
-              .outlineVariant, // Change the border color as needed
-          width: 1.0, // Adjust the border width as needed
+          color: Theme.of(context).colorScheme.outlineVariant,
+          width: 1.0,
         ),
       ),
       child: Padding(
@@ -33,7 +31,7 @@ class TicketWidget extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(borderRadius),
                   child: Image.asset(
-                    event.eventImage,
+                    "event.eventImage",
                     height: 102,
                     width: 102,
                   ),
@@ -46,7 +44,7 @@ class TicketWidget extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 11),
                         child: Text(
-                          event.eventTitle,
+                          "event.eventTitle",
                           style: Theme.of(context)
                               .textTheme
                               .headlineSmall
@@ -59,17 +57,15 @@ class TicketWidget extends StatelessWidget {
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                           border: Border.all(
-                            color: Theme.of(context)
-                                .colorScheme
-                                .outlineVariant, // Change the border color as needed
-                            width: 1.0, // Adjust the border width as needed
+                            color: Theme.of(context).colorScheme.outlineVariant,
+                            width: 1.0,
                           ),
                         ),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(
                               horizontal: 16.0, vertical: 6),
                           child: Text(
-                            event.ticketType,
+                            "event.ticketType",
                             style: Theme.of(context)
                                 .textTheme
                                 .labelLarge
@@ -112,7 +108,7 @@ class TicketWidget extends StatelessWidget {
                       Padding(
                           padding: EdgeInsets.only(bottom: 21),
                           child: Text(
-                            event.eventDate.toLocal().toString().split(' ')[0],
+                            "event.eventDate.toLocal().toString().split(' ')[0]",
                             style: Theme.of(context)
                                 .textTheme
                                 .bodyMedium
@@ -129,7 +125,7 @@ class TicketWidget extends StatelessWidget {
                       Padding(
                         padding: EdgeInsets.only(bottom: 21),
                         child: Text(
-                          event.ownerName,
+                          "event.ownerName",
                           style: Theme.of(context)
                               .textTheme
                               .bodyMedium
@@ -144,7 +140,7 @@ class TicketWidget extends StatelessWidget {
                             color: Theme.of(context).colorScheme.onSurface),
                       ),
                       Text(
-                        "${event.ticketPrice} LKR",
+                        "${"event.ticketPrice"} LKR",
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             color: Theme.of(context).colorScheme.onSurface),
                       ),
@@ -161,7 +157,7 @@ class TicketWidget extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 21),
                         child: Text(
-                          event.eventTime.format(context),
+                          "event.eventTime.format(context)",
                           style: Theme.of(context)
                               .textTheme
                               .bodyMedium
@@ -178,7 +174,7 @@ class TicketWidget extends StatelessWidget {
                       Padding(
                         padding: const EdgeInsets.only(bottom: 21),
                         child: Text(
-                          event.eventVenue,
+                          "event.eventVenue",
                           style: Theme.of(context)
                               .textTheme
                               .bodyMedium
@@ -193,7 +189,7 @@ class TicketWidget extends StatelessWidget {
                             color: Theme.of(context).colorScheme.onSurface),
                       ),
                       Text(
-                        event.ticketCount.toString(),
+                        "event.ticketCount".toString(),
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             color: Theme.of(context).colorScheme.onSurface),
                       ),
@@ -214,7 +210,7 @@ class TicketWidget extends StatelessWidget {
                   padding: const EdgeInsets.symmetric(vertical: 13),
                   child: Center(
                       child: Text(
-                    "Total Price ${event.ticketPrice * event.ticketCount} LKR",
+                    "Total Price ${"event.ticketPrice" "event.ticketCount"} LKR",
                     style: Theme.of(context).textTheme.labelLarge?.copyWith(
                         color:
                             Theme.of(context).colorScheme.onSecondaryContainer),

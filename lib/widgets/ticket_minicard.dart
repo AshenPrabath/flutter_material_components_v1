@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_material_components_v1/Models/event.dart';
+import 'package:flutter_material_components_v1/Models/event_model.dart';
 
 import 'package:flutter_material_components_v1/Pages/ticket_page.dart';
 
@@ -43,7 +43,7 @@ class TicketMiniCard extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        event.eventTitle,
+                        "event.eventTitle",
                         style: Theme.of(context)
                             .textTheme
                             .titleMedium
@@ -51,7 +51,7 @@ class TicketMiniCard extends StatelessWidget {
                                 color: Theme.of(context).colorScheme.onSurface),
                       ),
                       Text(
-                        event.ticketType,
+                        "event.ticketType",
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             color: Theme.of(context).colorScheme.onSurface),
                       ),
@@ -66,7 +66,7 @@ class TicketMiniCard extends StatelessWidget {
                     topRight: Radius.circular(borderRadius),
                     bottomRight: Radius.circular(borderRadius)),
                 child: Image.asset(
-                  event.eventImage,
+                  "event.eventImage",
                   height: 80,
                   width: 80,
                 )),
