@@ -1,29 +1,17 @@
 // event_data.dart
 
 import 'package:flutter/material.dart';
-import 'package:flutter_material_components_v1/Models/event.dart';
+import 'package:flutter_material_components_v1/Models/event_model.dart';
 
 List<Event> dummyEvents = [
   Event(
-      id: 1,
-      eventTitle: "Green Fiesta 2023",
-      eventImage: 'lib/assets/media (2).png',
-      ticketType: "VIP",
-      eventDate: DateTime.now(),
-      eventTime: TimeOfDay.now(),
-      ownerName: "Dilshan Perera",
-      eventVenue: "NSBM Sports Ground",
-      ticketPrice: 3000,
-      ticketCount: 3),
-  Event(
-      id: 2,
-      eventTitle: "Prana 2023",
-      eventImage: 'lib/assets/media (4).png',
-      ticketType: "Normal",
-      eventDate: DateTime.now(),
-      eventTime: TimeOfDay.now(),
-      ownerName: "Dilshan Perera",
-      eventVenue: "NSBM Sports Ground",
-      ticketPrice: 2000,
-      ticketCount: 1),
+    id: "1",
+    userId: "1",
+    title: "Green Fiesta",
+    image: "lib/assets/media (4).png",
+    time: 1694360737,
+    venue: "ground",
+    desc: "description description description ",
+    isFree: false,
+  )
 ];
