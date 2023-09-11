@@ -22,11 +22,10 @@ class ProfilePage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 23),
         child: FutureBuilder(
-          future: UserService.getAll(),
+          future: UserService.getUser(id: "1"),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
-              final users = snapshot.data!;
-              return ProfileData(user: users[0]);
+              return ProfileData(user: snapshot.data!);
             }
             return const Center(
               child: CircularProgressIndicator(),
