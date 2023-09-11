@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_material_components_v1/Models/user_model.dart';
+import 'package:flutter_material_components_v1/Pages/add_organization_page.dart';
+import 'package:flutter_material_components_v1/Pages/settings_page.dart';
 
 class ProfileData extends StatelessWidget {
   final User user;
@@ -42,7 +44,14 @@ class ProfileData extends StatelessWidget {
                     ),
                   ),
                   GestureDetector(
-                      onTap: () {}, child: const Icon(Icons.settings_outlined)),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const SettingsPage()),
+                        );
+                      },
+                      child: const Icon(Icons.settings_outlined)),
                 ],
               ),
             )
@@ -120,24 +129,50 @@ class ProfileData extends StatelessWidget {
           padding: const EdgeInsets.symmetric(vertical: 30),
           child: SizedBox(
             width: double.infinity,
+            // child: OutlinedButton(
+            //   style: OutlinedButton.styleFrom(
+            //     shape: RoundedRectangleBorder(
+            //       borderRadius: BorderRadius.circular(12.0),
+            //     ),
+            //     side: BorderSide(
+            //         width: 1,
+            //         color: Theme.of(context).colorScheme.outlineVariant),
+            //   ),
+            //   onPressed: () {},
+            //   child: Padding(
+            //     padding: EdgeInsets.symmetric(vertical: 15),
+            //     child: Text(
+            //       "Add an Organization",
+            //       style: Theme.of(context).textTheme.titleMedium?.copyWith(
+            //           color: Theme.of(context).colorScheme.onSurface),
+            //     ),
+            //   ),
+            // ),
             child: OutlinedButton(
-                style: OutlinedButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(12.0),
-                  ),
-                  side: BorderSide(
-                      width: 1,
-                      color: Theme.of(context).colorScheme.outlineVariant),
+              style: OutlinedButton.styleFrom(
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12.0),
                 ),
-                onPressed: () {},
-                child: Padding(
-                  padding: EdgeInsets.symmetric(vertical: 15),
-                  child: Text(
-                    "Add an Organization",
-                    style: Theme.of(context).textTheme.titleMedium?.copyWith(
-                        color: Theme.of(context).colorScheme.onSurface),
-                  ),
-                )),
+                side: BorderSide(
+                    width: 1,
+                    color: Theme.of(context).colorScheme.outlineVariant),
+              ),
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                      builder: (context) => const AddOrganizationPage()),
+                );
+              },
+              child: Padding(
+                padding: EdgeInsets.symmetric(vertical: 15),
+                child: Text(
+                  "Add an Organization",
+                  style: Theme.of(context).textTheme.titleMedium?.copyWith(
+                      color: Theme.of(context).colorScheme.onSurface),
+                ),
+              ),
+            ),
           ),
         )
       ],
