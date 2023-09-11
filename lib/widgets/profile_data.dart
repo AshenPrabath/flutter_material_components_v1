@@ -1,7 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_material_components_v1/Models/user_model.dart';
 
 class ProfileData extends StatelessWidget {
-  const ProfileData({super.key});
+  final User user;
+  const ProfileData({
+    Key? key,
+    required this.user,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -24,14 +29,14 @@ class ProfileData extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
-                    "Dilshan Perera",
+                    user.name,
                     style: Theme.of(context).textTheme.headlineMedium?.copyWith(
                         color: Theme.of(context).colorScheme.onBackground),
                   ),
                   Padding(
                     padding: const EdgeInsets.symmetric(vertical: 10),
                     child: Text(
-                      "wdrdperera@Students.nsbm.ac.lk",
+                      user.email,
                       style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                           color: Theme.of(context).colorScheme.onBackground),
                     ),
@@ -76,7 +81,7 @@ class ProfileData extends StatelessWidget {
                     color: Theme.of(context).colorScheme.onBackground),
               ),
               Text(
-                "0714515850",
+                user.phone,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: Theme.of(context).colorScheme.onBackground),
               ),
@@ -94,7 +99,7 @@ class ProfileData extends StatelessWidget {
                     color: Theme.of(context).colorScheme.onBackground),
               ),
               Text(
-                "Faculty Of Computing",
+                user.faculty,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: Theme.of(context).colorScheme.onBackground),
               ),
