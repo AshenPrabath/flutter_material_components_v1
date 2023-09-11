@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_material_components_v1/Models/User_model.dart';
-import 'package:flutter_material_components_v1/Models/event_model.dart';
-import 'package:flutter_material_components_v1/Models/user_model.dart';
 import 'package:flutter_material_components_v1/Services/user_service.dart';
 import 'package:flutter_material_components_v1/widgets/profile_data.dart';
 
@@ -25,13 +22,17 @@ class ProfilePage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 23),
         child: FutureBuilder(
-          future: UserService.getAll(), 
-          builder: (context,snapshot){
-            if (snapshot.hasData){
-              final List<User> users =snapshot.data!;
-              return ProfileData();
+          future: UserService.getAll(),
+          builder: (context, snapshot) {
+            if (snapshot.hasData) {
+              final users = snapshot.data!;
+              return ProfileData(user: users[0]);
             }
-          }),
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          },
+        ),
       ),
     );
   }
