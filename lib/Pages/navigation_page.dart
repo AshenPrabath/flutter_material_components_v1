@@ -27,7 +27,7 @@ class _EventsPageState extends State<NavigationPage> {
       context: context,
       builder: (context) => SizedBox(
         height: 146,
-        width: 400,
+        width: double.infinity,
         child: Center(
             child: Column(
           children: [
