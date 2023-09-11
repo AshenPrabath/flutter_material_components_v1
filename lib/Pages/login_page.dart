@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_material_components_v1/Pages/register_page.dart';
+import 'package:flutter_material_components_v1/Services/user_service.dart';
 import 'package:flutter_material_components_v1/widgets/custom_filled_button.dart';
 import 'package:flutter_material_components_v1/widgets/input_textfield.dart';
 
@@ -12,6 +13,8 @@ class LoginPage extends StatefulWidget {
 
 class _LoginPageState extends State<LoginPage> {
   final _formKey = GlobalKey<FormState>();
+  String email = "";
+  String password = "";
 
   @override
   Widget build(BuildContext context) {
@@ -45,22 +48,27 @@ class _LoginPageState extends State<LoginPage> {
                     InputTextField(
                       labelText: "Email Address",
                       hint: "Enter your Email Address",
-                      onChanged: (name) {},
+                      onChanged: (uEmail) {
+                        email = uEmail;
+                      },
                       isPassword: false,
                     ),
                     InputTextField(
                       labelText: "Password",
                       hint: "Enter your Password",
-                      onChanged: (name) {},
+                      onChanged: (uPassword) {
+                        password = uPassword;
+                      },
                       isPassword: true,
                     ),
                     CustomFilledButton(
-                        onPressed: () {
+                        onPressed: () async {
                           if (_formKey.currentState!.validate()) {
                             ScaffoldMessenger.of(context).showSnackBar(
                               const SnackBar(content: Text('Processing Data')),
                             );
                           }
+                          await UserService.userLogin(email, password);
                         },
                         buttonText: "Login"),
                     Row(
