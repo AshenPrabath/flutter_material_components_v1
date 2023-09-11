@@ -23,6 +23,8 @@ class EventCard extends StatelessWidget {
         child: Column(
           children: [
             ListTile(
+              trailing:
+                  GestureDetector(onTap: () {}, child: Icon(Icons.star_border)),
               leading: Image.asset(
                 'lib/assets/background.png',
                 width: 40,
@@ -98,7 +100,7 @@ class EventCard extends StatelessWidget {
               ),
             ),
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
                 event.desc,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(

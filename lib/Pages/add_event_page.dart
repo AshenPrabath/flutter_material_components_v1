@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_material_components_v1/Models/event_model.dart';
 
 import 'package:flutter_material_components_v1/Pages/add_tickets.dart';
-import 'package:flutter_material_components_v1/Source/event_data.dart';
 import 'package:flutter_material_components_v1/widgets/custom_filled_button.dart';
 import 'package:flutter_material_components_v1/widgets/date_picker_textfield.dart';
 import 'package:flutter_material_components_v1/widgets/input_large_textfield.dart';

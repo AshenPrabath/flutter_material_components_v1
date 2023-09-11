@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 
 import 'package:flutter_material_components_v1/Models/event_model.dart';
 import 'package:flutter_material_components_v1/Models/ticket_model.dart';
-import 'package:flutter_material_components_v1/Source/event_data.dart';
 import 'package:flutter_material_components_v1/Source/ticket_data.dart';
 import 'package:flutter_material_components_v1/widgets/add_tickets_dialog.dart';
 import 'package:flutter_material_components_v1/widgets/ticket_card.dart';
