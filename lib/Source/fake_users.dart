@@ -1,43 +1,43 @@
-const userRes="""
+const userRes = """
 [
   {
     "id": "1",
-    "name": "Alice",
-    "email": "alice@example.com",
+    "name": "Dilshan Perera",
+    "email": "dilshanperera@example.com",
     "phone": "123-456-7890",
-    "faculty": "Engineering",
+    "faculty": "Faculty of computing",
     "isAdmin": true
   },
   {
     "id": "2",
-    "name": "Bob",
-    "email": "bob@example.com",
+    "name": "Bob Marley",
+    "email": "bobmarley34@example.com",
     "phone": "987-654-3210",
-    "faculty": "Science",
+    "faculty": "Faculty of computing",
     "isAdmin": false
   },
   {
     "id": "3",
-    "name": "Charlie",
-    "email": "charlie@example.com",
+    "name": "Charlie Dunne",
+    "email": "charliedunne@example.com",
     "phone": "555-555-5555",
-    "faculty": "Arts",
+    "faculty": "Faculty of science",
     "isAdmin": false
   },
   {
     "id": "4",
-    "name": "David",
-    "email": "david@example.com",
+    "name": "David Miller",
+    "email": "davidmiller@example.com",
     "phone": "777-777-7777",
-    "faculty": "Medicine",
+    "faculty": "Faculty of Business",
     "isAdmin": true
   },
   {
     "id": "5",
-    "name": "Eve",
-    "email": "eve@example.com",
+    "name": "Evenjalin Fernando",
+    "email": "evenjaferd@example.com",
     "phone": "999-999-9999",
-    "faculty": "Business",
+    "faculty": "Faculty of Business",
     "isAdmin": false
   }
 ]""";
