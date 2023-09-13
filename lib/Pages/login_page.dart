@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_material_components_v1/Pages/forgot_password_page.dart';
 import 'package:flutter_material_components_v1/Pages/navigation_page.dart';
 import 'package:flutter_material_components_v1/Pages/register_page.dart';
 import 'package:flutter_material_components_v1/Services/user_service.dart';
@@ -61,6 +62,34 @@ class _LoginPageState extends State<LoginPage> {
                         password = uPassword;
                       },
                       isPassword: true,
+                    ),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.end,
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(horizontal: 10),
+                          child: GestureDetector(
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const ForgotPasswordPage()),
+                              );
+                            },
+                            child: Text(
+                              " Forgot password?",
+                              style: Theme.of(context)
+                                  .textTheme
+                                  .bodyMedium
+                                  ?.copyWith(
+                                      color: Theme.of(context)
+                                          .colorScheme
+                                          .primary),
+                            ),
+                          ),
+                        ),
+                      ],
                     ),
                     CustomFilledButton(
                         onPressed: () async {
