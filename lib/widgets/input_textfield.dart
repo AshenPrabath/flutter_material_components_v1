@@ -31,6 +31,12 @@ class InputTextField extends StatelessWidget {
         validator: (value) {
           if (value == null || value.isEmpty) {
             return 'Please fill this field';
+          } else if (textInputType == TextInputType.emailAddress &&
+              !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")
+                  .hasMatch(value)) {
+            return 'Please enter a valid email address';
+          } else if (isPassword == true && value.length < 6) {
+            return 'Password must be at least 6 characters';
           }
           return null;
         },
