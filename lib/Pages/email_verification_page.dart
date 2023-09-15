@@ -16,13 +16,14 @@ class EmailVerificationPage extends StatefulWidget {
 class _EmailVerificationPageState extends State<EmailVerificationPage> {
   bool isEmailVerified = false;
   Timer? timer;
+  User user = FirebaseAuth.instance.currentUser!;
 
   @override
   void initState() {
     super.initState();
     isEmailVerified = FirebaseAuth.instance.currentUser!.emailVerified;
     if (!isEmailVerified) {
-      UserService.sendEmailVerification(FirebaseAuth.instance.currentUser!);
+      UserService.sendEmailVerification(user);
 
       timer = Timer.periodic(
         const Duration(seconds: 3),
@@ -38,9 +39,9 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
   }
 
   Future checkEmailVerified() async {
-    await FirebaseAuth.instance.currentUser!.reload();
+    await user.reload();
     setState(() {
-      isEmailVerified = FirebaseAuth.instance.currentUser!.emailVerified;
+      isEmailVerified = user.emailVerified;
     });
     if (isEmailVerified) timer?.cancel();
   }
@@ -70,7 +71,7 @@ class _EmailVerificationPageState extends State<EmailVerificationPage> {
                         color: Theme.of(context).colorScheme.onSurface),
                   ),
                   Text(
-                    "${FirebaseAuth.instance.currentUser?.email}",
+                    "${user.email}",
                     textAlign: TextAlign.center,
                     style: Theme.of(context).textTheme.titleMedium?.copyWith(
                         color: Theme.of(context).colorScheme.onSurface),
