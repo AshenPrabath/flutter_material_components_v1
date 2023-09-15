@@ -96,27 +96,32 @@ class _LoginPageState extends State<LoginPage> {
                         onPressed: () async {
                           if (_formKey.currentState!.validate()) {}
                           await UserService.userLogin(context, email, password)
-                              .then((value) {
-                            Navigator.of(context).pushReplacement(
-                              MaterialPageRoute(
-                                builder: (context) => const NavigationPage(),
-                              ),
-                            );
-                          }).catchError((error) {
-                            if (error is AuthFailure) {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(error.message),
+                              .then(
+                            (value) {
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                  builder: (context) => const NavigationPage(),
                                 ),
                               );
-                            } else {
-                              ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(
-                                  content: Text(""),
-                                ),
-                              );
-                            }
-                          });
+                            },
+                          ).catchError(
+                            (error) {
+                              if (error is AuthFailure) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(error.message),
+                                  ),
+                                );
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text(
+                                        "Unknown error occurred.try again"),
+                                  ),
+                                );
+                              }
+                            },
+                          );
                         },
                         buttonText: "Login"),
                     Row(
