@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_material_components_v1/Services/user_service.dart';
 import 'package:flutter_material_components_v1/widgets/custom_filled_button.dart';
 import 'package:flutter_material_components_v1/widgets/input_dropdown.dart';
 import 'package:flutter_material_components_v1/widgets/input_textfield.dart';
@@ -20,7 +21,12 @@ class _RegisterState extends State<Register> {
     "Faculty Of Computing",
     "Faculty Of Engineering"
   ];
-  final String faculty = "";
+  String name = "";
+  String email = "";
+  String phone = "";
+  String faculty = "";
+  String password = "";
+  String confirmPassword = "";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -51,51 +57,86 @@ class _RegisterState extends State<Register> {
                     InputTextField(
                       labelText: "Name",
                       hint: "Enter your Name",
-                      onChanged: (name) {},
+                      onChanged: (nameValue) {
+                        name = nameValue;
+                      },
                       isPassword: false,
                     ),
                     InputTextField(
                       labelText: "Email Address",
                       hint: "Enter your Email Address ",
                       textInputType: TextInputType.emailAddress,
-                      onChanged: (email) {},
+                      onChanged: (emailValue) {
+                        email = emailValue;
+                      },
                       isPassword: false,
                     ),
                     InputTextField(
                       labelText: "Phone",
                       hint: "Enter your Name",
                       textInputType: TextInputType.phone,
-                      onChanged: (phone) {},
+                      onChanged: (phoneValue) {
+                        phone = phoneValue;
+                      },
                       isPassword: false,
                     ),
                     InputDropDown(
-                      onChanged: (value) {},
+                      onChanged: (facultyValue) {
+                        faculty = facultyValue;
+                      },
                       itemsList: facultyList,
                       labelText: "Select Faculty",
                     ),
                     InputTextField(
                       labelText: "Password",
                       hint: "Set a new password",
-                      onChanged: (name) {},
+                      onChanged: (passwordValue) {
+                        password = passwordValue;
+                      },
                       isPassword: true,
                     ),
                     InputTextField(
                       labelText: "Confirm Password",
                       hint: "re type password",
-                      onChanged: (name) {},
+                      onChanged: (confirmPasswordValue) {
+                        confirmPassword = confirmPasswordValue;
+                      },
                       isPassword: true,
                     ),
                     CustomFilledButton(
-                        onPressed: () {
-                          if (_formKey.currentState!.validate()) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Processing Data')),
-                            );
-                          }
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) => const NavigationPage()),
+                        onPressed: () async {
+                          if (_formKey.currentState!.validate()) {}
+                          await UserService.userRegister(
+                            name,
+                            email,
+                            phone,
+                            faculty,
+                            password,
+                          ).then(
+                            (value) {
+                              Navigator.of(context).pushReplacement(
+                                MaterialPageRoute(
+                                  builder: (context) => const NavigationPage(),
+                                ),
+                              );
+                            },
+                          ).catchError(
+                            (error) {
+                              if (error is AuthFailure) {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  SnackBar(
+                                    content: Text(error.message),
+                                  ),
+                                );
+                              } else {
+                                ScaffoldMessenger.of(context).showSnackBar(
+                                  const SnackBar(
+                                    content: Text(
+                                        "Unknown error occurred.try again"),
+                                  ),
+                                );
+                              }
+                            },
                           );
                         },
                         buttonText: "Register"),
