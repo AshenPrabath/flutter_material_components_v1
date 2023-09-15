@@ -13,7 +13,7 @@ class NavigationPage extends StatefulWidget {
 }
 
 class _EventsPageState extends State<NavigationPage> {
-  int currentPageIndex = 3;
+  int currentPageIndex = 0;
   final screens = [
     const EventsPage(),
     const SearchPage(),

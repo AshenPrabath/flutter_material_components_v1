@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_material_components_v1/Pages/email_verification_page.dart';
 import 'package:flutter_material_components_v1/Services/user_service.dart';
 import 'package:flutter_material_components_v1/widgets/custom_filled_button.dart';
 import 'package:flutter_material_components_v1/widgets/input_dropdown.dart';
@@ -116,7 +117,8 @@ class _RegisterState extends State<Register> {
                             (value) {
                               Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
-                                  builder: (context) => const NavigationPage(),
+                                  builder: (context) =>
+                                      const EmailVerificationPage(),
                                 ),
                               );
                             },

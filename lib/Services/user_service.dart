@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -98,6 +99,14 @@ class UserService {
       }
     } catch (e) {
       throw AuthFailure(message: "message");
+    }
+  }
+
+  static Future<void> sendEmailVerification(User user) async {
+    try {
+      await user.sendEmailVerification();
+    } catch (e) {
+      throw AuthFailure(message: "Failed to send email verification");
     }
   }
 

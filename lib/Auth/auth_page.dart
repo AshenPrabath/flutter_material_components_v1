@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_material_components_v1/Pages/email_verification_page.dart';
 import 'package:flutter_material_components_v1/Pages/login_page.dart';
-import 'package:flutter_material_components_v1/Pages/navigation_page.dart';
 
 class AuthPage extends StatelessWidget {
   const AuthPage({super.key});
@@ -13,10 +13,9 @@ class AuthPage extends StatelessWidget {
         stream: FirebaseAuth.instance.authStateChanges(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-
-            return NavigationPage();
+            return const EmailVerificationPage();
           } else {
-            return LoginPage();
+            return const LoginPage();
           }
         },
       ),
