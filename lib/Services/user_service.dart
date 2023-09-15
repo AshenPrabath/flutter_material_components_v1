@@ -1,5 +1,6 @@
 import 'dart:convert';
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -62,6 +63,42 @@ class UserService {
 
   static Future<void> userLogOut() async {
     await FirebaseAuth.instance.signOut();
+  }
+
+  static Future<void> userRegister(
+    String userName,
+    String userEmail,
+    String userPhone,
+    String userFaculty,
+    String userPassword,
+  ) async {
+    FirebaseAuth auth = FirebaseAuth.instance;
+    User? user;
+    try {
+      UserCredential userCredential = await auth.createUserWithEmailAndPassword(
+        email: userEmail,
+        password: userPassword,
+      );
+      user = userCredential.user;
+      await user!.updateDisplayName(userName);
+      await user.reload();
+      user = auth.currentUser;
+
+      FirebaseFirestore.instance.collection('user').doc(user!.uid).set({
+        'name': userName,
+        'email': userEmail,
+        'phone': userPhone,
+        'faculty': userFaculty,
+      });
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'EMAIL_ALREADY_IN_USE') {
+        throw AuthFailure(message: 'Email already in use');
+      } else {
+        throw AuthFailure(message: "Unknown Error occurred");
+      }
+    } catch (e) {
+      throw AuthFailure(message: "message");
+    }
   }
 
   static Future<void> resetPassword(
