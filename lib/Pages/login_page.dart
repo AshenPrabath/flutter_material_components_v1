@@ -48,6 +48,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                     InputTextField(
+                      textInputType: TextInputType.emailAddress,
                       labelText: "Email Address",
                       hint: "Enter your Email Address",
                       onChanged: (uEmail) {
@@ -93,18 +94,29 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                     CustomFilledButton(
                         onPressed: () async {
-                          if (_formKey.currentState!.validate()) {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(content: Text('Processing Data')),
-                            );
-                          }
-                          await UserService.userLogin(email, password).then(
-                            (value) => Navigator.of(context).pushReplacement(
+                          if (_formKey.currentState!.validate()) {}
+                          await UserService.userLogin(context, email, password)
+                              .then((value) {
+                            Navigator.of(context).pushReplacement(
                               MaterialPageRoute(
                                 builder: (context) => const NavigationPage(),
                               ),
-                            ),
-                          );
+                            );
+                          }).catchError((error) {
+                            if (error is AuthFailure) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(error.message),
+                                ),
+                              );
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(
+                                  content: Text(""),
+                                ),
+                              );
+                            }
+                          });
                         },
                         buttonText: "Login"),
                     Row(
