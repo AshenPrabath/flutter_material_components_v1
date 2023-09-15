@@ -1,9 +1,18 @@
 import 'dart:convert';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+
 import 'package:flutter_material_components_v1/Models/user_model.dart'
     as AppUser;
 import 'package:flutter_material_components_v1/Source/fake_users.dart';
+
+class AuthFailure {
+  final String message;
+  AuthFailure({
+    required this.message,
+  });
+}
 
 class UserService {
   static Future<List<AppUser.User>> getAll() async {
@@ -33,14 +42,21 @@ class UserService {
     }
   }
 
-  static Future<void> userLogin(String userEmail, String userPassword) async {
+  static Future<void> userLogin(
+      BuildContext context, userEmail, String userPassword) async {
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
         email: userEmail,
         password: userPassword,
       );
+    } on FirebaseAuthException catch (e) {
+      if (e.code == 'INVALID_LOGIN_CREDENTIALS') {
+        throw AuthFailure(message: 'Invalid Login credentials');
+      } else {
+        throw AuthFailure(message: "Unknown Error occurred");
+      }
     } catch (e) {
-      throw e.toString();
+      throw AuthFailure(message: "message");
     }
   }
 
