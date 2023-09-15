@@ -12,6 +12,7 @@ class SettingsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.secondaryContainer,
+
         title: Text(
           "Settings",
           style: Theme.of(context)
