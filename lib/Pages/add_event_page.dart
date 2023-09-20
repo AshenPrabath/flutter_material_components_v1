@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_material_components_v1/Models/event_model.dart';
 
 import 'package:flutter_material_components_v1/Pages/add_tickets.dart';
 import 'package:flutter_material_components_v1/widgets/custom_filled_button.dart';
@@ -9,10 +8,10 @@ import 'package:flutter_material_components_v1/widgets/input_textfield.dart';
 import 'package:flutter_material_components_v1/widgets/time_picker_textfield.dart';
 
 class AddEventPage extends StatefulWidget {
-  final Event events;
+  // final Event events;
   const AddEventPage({
     Key? key,
-    required this.events,
+    // required this.events,
   }) : super(key: key);
 
   @override
@@ -126,8 +125,8 @@ class _AddEventPageState extends State<AddEventPage> {
                               context,
                               MaterialPageRoute(
                                 builder: (context) => AddTicket(
-                                  event: widget.events,
-                                ),
+                                    // event: widget.events,
+                                    ),
                               ),
                             );
                           },
