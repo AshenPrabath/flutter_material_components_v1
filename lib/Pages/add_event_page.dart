@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_material_components_v1/Pages/add_tickets.dart';
+import 'package:flutter_material_components_v1/Services/event_service.dart';
+import 'package:flutter_material_components_v1/Services/user_service.dart';
 import 'package:flutter_material_components_v1/widgets/custom_filled_button.dart';
 import 'package:flutter_material_components_v1/widgets/date_picker_textfield.dart';
 import 'package:flutter_material_components_v1/widgets/input_large_textfield.dart';
@@ -8,10 +10,8 @@ import 'package:flutter_material_components_v1/widgets/input_textfield.dart';
 import 'package:flutter_material_components_v1/widgets/time_picker_textfield.dart';
 
 class AddEventPage extends StatefulWidget {
-  // final Event events;
   const AddEventPage({
     Key? key,
-    // required this.events,
   }) : super(key: key);
 
   @override
@@ -19,14 +19,29 @@ class AddEventPage extends StatefulWidget {
 }
 
 class _AddEventPageState extends State<AddEventPage> {
-  TimeOfDay? time;
-  String? eventTitle;
-  DateTime? date;
-  String buttonText = "Publish as a free event";
+  final _formKey = GlobalKey<FormState>();
+  String eventUrl = "";
+  String eventTitle = '';
+  late TimeOfDay eventTime;
+  late DateTime eventDate;
+  String eventVenue = '';
   final TextEditingController _descText = TextEditingController();
-  Future<String> saveToDatabase() async {
-    await Future.delayed(Duration(seconds: 3));
-    return "succeed";
+  String? eventLink;
+
+  String buttonText = "Publish as a free event";
+
+  int get combinedDateTime => DateTime(
+        eventDate.year,
+        eventDate.month,
+        eventDate.day,
+        eventTime.hour,
+        eventTime.minute,
+      ).millisecondsSinceEpoch;
+
+  @override
+  void dispose() {
+    _descText.dispose();
+    super.dispose();
   }
 
   @override
@@ -43,6 +58,7 @@ class _AddEventPageState extends State<AddEventPage> {
         ),
       ),
       body: Form(
+        key: _formKey,
         child: ListView(
           children: [
             Image.asset('lib/assets/Group 9.png'),
@@ -67,14 +83,14 @@ class _AddEventPageState extends State<AddEventPage> {
                         TimePickerTextField(
                           hint: "TIme",
                           onTimePicked: (pickedTime) {
-                            time = pickedTime;
+                            eventTime = pickedTime;
                           },
                         ),
                         const Spacer(),
                         DatePickerTextField(
                           hint: "Date",
                           onDatePicked: (pickedDate) {
-                            date = pickedDate;
+                            eventDate = pickedDate;
                           },
                         )
                       ],
@@ -83,28 +99,41 @@ class _AddEventPageState extends State<AddEventPage> {
                       labelText: "Venue",
                       hint: "Enter the location ",
                       suffixIcon: Icons.location_on_outlined,
-                      onChanged: (value) {},
+                      onChanged: (value) {
+                        eventVenue = value;
+                      },
                     ),
                     InputLargeTextField(
                       controller: _descText,
                       maxLength: 250,
                     ),
                     InputTextField(
+                      isOptional: true,
                       labelText: "External Link",
                       hint: "Paste if you have any external Links.",
                       helperText: "*Optional",
                       suffixIcon: Icons.link,
-                      onChanged: (value) {},
+                      onChanged: (value) {
+                        eventLink = value;
+                      },
                     ),
                     OverflowBar(
                       overflowSpacing: 7,
                       children: [
                         CustomFilledButton(
                             onPressed: () async {
-                              final res = await saveToDatabase();
-                              setState(() {
-                                buttonText = res;
-                              });
+                              if (_formKey.currentState!.validate()) {
+                                await EventService.addEvent(
+                                  UserService.getUserId(),
+                                  eventTitle,
+                                  eventUrl,
+                                  combinedDateTime,
+                                  eventVenue,
+                                  _descText.text.toString(),
+                                  true,
+                                  eventLink,
+                                );
+                              }
                             },
                             buttonText: buttonText),
                         Center(
@@ -150,11 +179,5 @@ class _AddEventPageState extends State<AddEventPage> {
         ),
       ),
     );
-  }
-
-  @override
-  void dispose() {
-    _descText.dispose();
-    super.dispose();
   }
 }
