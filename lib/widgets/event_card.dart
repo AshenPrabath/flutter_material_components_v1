@@ -1,14 +1,20 @@
 import 'package:flutter/material.dart';
 
 import 'package:flutter_material_components_v1/Models/event_model.dart';
+import 'package:flutter_material_components_v1/Services/event_service.dart';
 
-class EventCard extends StatelessWidget {
+class EventCard extends StatefulWidget {
   final Event event;
   const EventCard({
     Key? key,
     required this.event,
   }) : super(key: key);
 
+  @override
+  State<EventCard> createState() => _EventCardState();
+}
+
+class _EventCardState extends State<EventCard> {
   @override
   Widget build(BuildContext context) {
     return Center(
@@ -23,15 +29,15 @@ class EventCard extends StatelessWidget {
         child: Column(
           children: [
             ListTile(
-              trailing:
-                  GestureDetector(onTap: () {}, child: Icon(Icons.star_border)),
+              trailing: GestureDetector(
+                  onTap: () {}, child: const Icon(Icons.star_border)),
               leading: Image.asset(
                 'lib/assets/background.png',
                 width: 40,
                 height: 40,
               ),
               title: Text(
-                event.title,
+                widget.event.title,
                 style: Theme.of(context)
                     .textTheme
                     .titleMedium
@@ -40,12 +46,12 @@ class EventCard extends StatelessWidget {
               subtitle: Row(
                 children: [
                   Text(
-                    '${event.userId} |',
+                    '${widget.event.userId} |',
                     style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                         color: Theme.of(context).colorScheme.onSurfaceVariant),
                   ),
                   Text(
-                    ' ${event.time}',
+                    ' ${widget.event.time}',
                     style: TextStyle(color: Colors.black.withOpacity(0.6)),
                   ),
                 ],
@@ -64,7 +70,7 @@ class EventCard extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  Text(event.title,
+                  Text(widget.event.title,
                       style: Theme.of(context).textTheme.headlineMedium),
                 ],
               ),
@@ -89,7 +95,7 @@ class EventCard extends StatelessWidget {
                                 Theme.of(context).colorScheme.onSurfaceVariant),
                       ),
                       Text(
-                        "📍 Venue : FOC-C2-L-110",
+                        "📍 Venue : ${widget.event.venue}",
                         style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                             color:
                                 Theme.of(context).colorScheme.onSurfaceVariant),
@@ -102,7 +108,7 @@ class EventCard extends StatelessWidget {
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 16.0),
               child: Text(
-                event.desc,
+                widget.event.desc,
                 style: Theme.of(context).textTheme.bodyMedium?.copyWith(
                     color: Theme.of(context).colorScheme.onSurfaceVariant),
               ),

@@ -3,9 +3,14 @@ import 'package:flutter_material_components_v1/Models/event_model.dart';
 import 'package:flutter_material_components_v1/Services/event_service.dart';
 import 'package:flutter_material_components_v1/widgets/event_card.dart';
 
-class EventsPage extends StatelessWidget {
+class EventsPage extends StatefulWidget {
   const EventsPage({super.key});
 
+  @override
+  State<EventsPage> createState() => _EventsPageState();
+}
+
+class _EventsPageState extends State<EventsPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,8 +27,9 @@ class EventsPage extends StatelessWidget {
       ),
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 15),
+        // child: EventCard(event: EventService.getEvent()),
         child: FutureBuilder(
-          future: EventService.getAll(),
+          future: EventService.getAllEvents(),
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               final List<Event> events = snapshot.data!;
