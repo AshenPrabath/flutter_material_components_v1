@@ -49,17 +49,34 @@ class UserService {
     }
   }
 
-  static Future<AppUser.User> getUser({required String id}) async {
+  static Future<AppUser.User> getCurrentUser() async {
     try {
-      final users = await getAll();
-      for (var user in users) {
-        if (user.id == id) {
-          return user;
-        }
-      }
-      throw Exception("User not found for ID");
+      final id = getUserId();
+      FirebaseFirestore firestore = FirebaseFirestore.instance;
+      final user = await firestore.collection('user').doc(id).get();
+      return AppUser.User.fromMap(user.data() as Map<String, dynamic>);
     } catch (e) {
       throw e.toString();
+    }
+  }
+
+  static Future<AppUser.User> getUserById(id) async {
+    try {
+      final DocumentSnapshot userSnapshot =
+          await FirebaseFirestore.instance.collection('users').doc(id).get();
+
+      if (userSnapshot.exists) {
+        final Map<String, dynamic> userData =
+            userSnapshot.data() as Map<String, dynamic>;
+
+        final AppUser.User user = AppUser.User.fromMap(userData);
+
+        return user;
+      } else {
+        throw AuthFailure(message: 'User not found');
+      }
+    } catch (e) {
+      throw AuthFailure(message: e.toString());
     }
   }
 
@@ -105,6 +122,17 @@ class UserService {
       user = auth.currentUser;
 
       FirebaseFirestore.instance.collection('user').doc(user!.uid).set({
+        "id": user.uid,
+        'name': userName,
+        'email': userEmail,
+        'phone': userPhone,
+        'faculty': userFaculty,
+      });
+
+      final doc = FirebaseFirestore.instance.collection('user').doc();
+
+      await doc.set({
+        "id": doc.id,
         'name': userName,
         'email': userEmail,
         'phone': userPhone,

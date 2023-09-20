@@ -8,6 +8,7 @@ class InputTextField extends StatelessWidget {
   final double? width;
   final String? helperText;
   final TextInputType? textInputType;
+  final bool? isOptional;
   final Function(String) onChanged;
   const InputTextField({
     Key? key,
@@ -19,6 +20,7 @@ class InputTextField extends StatelessWidget {
     this.helperText,
     this.textInputType,
     required this.onChanged,
+    this.isOptional,
   }) : super(key: key);
 
   @override
@@ -30,6 +32,9 @@ class InputTextField extends StatelessWidget {
         onChanged: onChanged,
         validator: (value) {
           if (value == null || value.isEmpty) {
+            if (isOptional == true) {
+              return null;
+            }
             return 'Please fill this field';
           } else if (textInputType == TextInputType.emailAddress &&
               !RegExp(r"^[a-zA-Z0-9.a-zA-Z0-9.!#$%&'*+-/=?^_`{|}~]+@[a-zA-Z0-9]+\.[a-zA-Z]+")

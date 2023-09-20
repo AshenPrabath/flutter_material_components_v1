@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:flutter/material.dart';
 import 'package:flutter_material_components_v1/Services/user_service.dart';
 import 'package:flutter_material_components_v1/widgets/profile_data.dart';
@@ -22,8 +24,9 @@ class ProfilePage extends StatelessWidget {
       body: Padding(
         padding: const EdgeInsets.symmetric(vertical: 40, horizontal: 23),
         child: FutureBuilder(
-          future: UserService.getUser(id: "1"),
+          future: UserService.getCurrentUser(),
           builder: (context, snapshot) {
+            log(snapshot.toString());
             if (snapshot.hasData) {
               return ProfileData(user: snapshot.data!);
             }

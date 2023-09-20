@@ -14,7 +14,6 @@ class Register extends StatefulWidget {
 
 class _RegisterState extends State<Register> {
   final _formKey = GlobalKey<FormState>();
-  // final TextEditingController _name = TextEditingController();
   List<String> facultyList = [
     "Faculty Of Business",
     "Faculty Of Computing",
@@ -26,6 +25,7 @@ class _RegisterState extends State<Register> {
   String faculty = "";
   String password = "";
   String confirmPassword = "";
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
