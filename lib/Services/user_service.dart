@@ -17,6 +17,25 @@ class AuthFailure {
 }
 
 class UserService {
+  static bool get isSignedIn =>
+      FirebaseAuth.instance.currentUser != null ? true : false;
+
+  static String getUserId() {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      return user.uid;
+    }
+    throw AuthFailure(message: "User not found");
+  }
+
+  static String getEmail() {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      return user.email!;
+    }
+    throw AuthFailure(message: "User not found");
+  }
+
   static Future<List<AppUser.User>> getAll() async {
     try {
       await Future.delayed(const Duration(seconds: 1));
@@ -102,11 +121,57 @@ class UserService {
     }
   }
 
-  static Future<void> sendEmailVerification(User user) async {
+  static Future<void> sendEmailVerification() async {
     try {
-      await user.sendEmailVerification();
+      await FirebaseAuth.instance.currentUser!.sendEmailVerification();
     } catch (e) {
       throw AuthFailure(message: "Failed to send email verification");
+    }
+  }
+
+  static bool isVerified() {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      return user.emailVerified;
+    }
+    return false;
+  }
+
+  // static Stream<bool> listenEmailVerification() async* {
+  //   final user = FirebaseAuth.instance.currentUser;
+  //   if (user != null) {
+  //     yield* Stream<bool>.periodic(const Duration(seconds: 1), (count) {});
+  //   }
+  //   throw AuthFailure(message: "Failed to listen email verification");
+  // }
+
+  static Future<void> checkEmailVerificationStatus(
+      {required Function(int) onWaiting,
+      required Function() onSucceed,
+      required Function() onWaitingEnd,
+      required Function(AuthFailure) onFailed}) async {
+    final user = FirebaseAuth.instance.currentUser;
+    if (user != null) {
+      bool isSucceed = false;
+      for (var i = 0; i < 30; i++) {
+        final User userForCheck = FirebaseAuth.instance.currentUser!;
+        await Future.delayed(const Duration(seconds: 1));
+        await userForCheck.reload();
+        if (userForCheck.emailVerified) {
+          isSucceed = true;
+          break;
+        }
+        if (!userForCheck.emailVerified) {
+          onWaiting(i);
+        }
+      }
+      if (isSucceed) {
+        onSucceed();
+      } else {
+        onWaitingEnd();
+      }
+    } else {
+      onFailed(AuthFailure(message: "User not found"));
     }
   }
 
