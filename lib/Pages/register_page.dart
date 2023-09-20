@@ -5,8 +5,6 @@ import 'package:flutter_material_components_v1/widgets/custom_filled_button.dart
 import 'package:flutter_material_components_v1/widgets/input_dropdown.dart';
 import 'package:flutter_material_components_v1/widgets/input_textfield.dart';
 
-import 'navigation_page.dart';
-
 class Register extends StatefulWidget {
   const Register({super.key});
 

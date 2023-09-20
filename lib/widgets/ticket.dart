@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_material_components_v1/Models/event_model.dart';
 
 import 'package:flutter_material_components_v1/widgets/custom_filled_button.dart';
+import 'package:flutter_material_components_v1/widgets/total_price_container.dart';
 
 class TicketWidget extends StatelessWidget {
   final Event event;
@@ -198,25 +199,9 @@ class TicketWidget extends StatelessWidget {
                 ],
               ),
             ),
-            Padding(
-              padding: const EdgeInsets.only(top: 30),
-              child: Container(
-                width: double.infinity,
-                decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.secondaryContainer,
-                  borderRadius: BorderRadius.circular(8),
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 13),
-                  child: Center(
-                      child: Text(
-                    "Total Price ${"event.ticketPrice" "event.ticketCount"} LKR",
-                    style: Theme.of(context).textTheme.labelLarge?.copyWith(
-                        color:
-                            Theme.of(context).colorScheme.onSecondaryContainer),
-                  )),
-                ),
-              ),
+            const Padding(
+              padding: EdgeInsets.only(top: 30),
+              child: TotalPriceContainer(),
             ),
             Padding(
               padding: const EdgeInsets.only(top: 20),

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_material_components_v1/Auth/auth_page.dart';
 import 'package:flutter_material_components_v1/Pages/forgot_password_page.dart';
-import 'package:flutter_material_components_v1/Pages/navigation_page.dart';
 import 'package:flutter_material_components_v1/Pages/register_page.dart';
 import 'package:flutter_material_components_v1/Services/user_service.dart';
 import 'package:flutter_material_components_v1/widgets/custom_filled_button.dart';
@@ -100,7 +100,7 @@ class _LoginPageState extends State<LoginPage> {
                             (value) {
                               Navigator.of(context).pushReplacement(
                                 MaterialPageRoute(
-                                  builder: (context) => const NavigationPage(),
+                                  builder: (context) => const AuthPage(),
                                 ),
                               );
                             },

@@ -4,11 +4,11 @@ import 'package:flutter_material_components_v1/Models/event_model.dart';
 import 'package:flutter_material_components_v1/Models/ticket_model.dart';
 
 class TicketCard extends StatelessWidget {
-  final Event event;
+  // final Event event;
   final Ticket ticket;
   const TicketCard({
     Key? key,
-    required this.event,
+    // required this.event,
     required this.ticket,
   }) : super(key: key);
 

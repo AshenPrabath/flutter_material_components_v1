@@ -165,7 +165,7 @@ class ProfileData extends StatelessWidget {
                 );
               },
               child: Padding(
-                padding: EdgeInsets.symmetric(vertical: 15),
+                padding: const EdgeInsets.symmetric(vertical: 15),
                 child: Text(
                   "Add an Organization",
                   style: Theme.of(context).textTheme.titleMedium?.copyWith(
